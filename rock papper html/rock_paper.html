@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+    <style>
+        body{
+                background-color: black;
+                color: white;
+        }
+        .title{
+font-size: 30px;
+font-family: Arial;
+
+        }
+        .rock{
+                height: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+        <center>
+    <p class="title"> Rock Paper Scissors</p><br>
+  
+    <button onclick="playgame('Rock');">
+      <img src="rock image.jpg" class="rock">
+    </button>
+
+    <button onclick="playgame('Paper');" >
+    <img src="paper image.webp" class="rock">
+    </button>
+
+    <button onclick="playgame('Scissors');">
+    <img src="scissor image.jpeg" class="rock"></button>
+
+<button onclick="
+score.wins = 0;
+score.loss = 0;
+score.ties = 0;
+updateScore();
+">Reset Score</button>
+
+<h2 id="show"></h2>
+
+<h1 id="one">Wins: 0, Losses: 0, Ties: 0</h1>
+    <script>
+          
+        const score={
+                wins : 0,
+                loss : 0,
+                ties : 0
+        };
+function playgame(playermove){
+     const rs=pickcomputer();
+     let res='';
+     if(playermove==='Scissors'){
+        if(rs==='Rock'){
+                res='You lose';
+        }
+        else if(rs==='Paper'){
+                res='you win.';
+        }
+        else if(rs==='Scissors'){
+                res='Tie ';
+        }
+        }
+       else if(playermove==='Paper'){
+        if(rs==='Rock'){
+                res='you win.';
+        }
+        else if(rs==='Paper'){
+                res='Tie ';
+        }
+        else if(rs==='Scissors'){
+                res='You lose';
+        }
+        }
+        else if(playermove==='Rock'){
+        if(rs==='Rock'){
+                res='Tie ';
+        }
+        else if(rs==='Paper'){
+                res='You lose';
+        }
+        else if(rs==='Scissors'){
+                res='you win.';
+        }
+        }
+        
+        if(res==='you win.'){
+                score.wins++;
+        }
+        else if(res==='You lose'){
+              score.loss++;
+        }
+        else if(res==='Tie '){
+                score.ties++;
+        }
+        let show=document.getElementById('show');
+      show.innerHTML=` You picked ${playermove}.  Computer picked ${rs}. ${res}`;
+      //  Wins : ${score.wins}, Losses: ${score.loss}, Ties : ${score.ties}
+      
+       updateScore();
+}
+      function updateScore() {
+            document.getElementById('one').innerHTML = 
+                `Wins: ${score.wins}, Losses: ${score.loss}, Ties: ${score.ties}`;
+        }
+
+    
+        function pickcomputer(){
+            const choice=['Rock','Paper','Scissors'];
+     const rs=choice[Math.floor(Math.random()* choice.length)];
+      return rs;
+        }
+     
+    </script>
+    </center>
+</body>
+</html>
